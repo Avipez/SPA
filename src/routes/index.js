@@ -1,13 +1,13 @@
 import Header from "../templates/header";
 import Home from "../pages/home";
-import Characters from "../pages/character";
+import Character from "../pages/character";
 import Error404 from "../pages/error404";
 import getHash from "../utils/getHash"
 import resolveRoutes from "../utils/resolveRoutes"
 
 const routes = {
     "/": Home,
-    "/:id": Characters,
+    "/:id": Character,
     "/contact": "Contact",
 }
 
@@ -18,6 +18,8 @@ const Router = async () => {
     let hash = getHash();
     let route = await resolveRoutes(hash);
     let render = routes[route] ? routes[route] : Error404;
+    console.log(route)
+    console.log(routes[route])
 
     content.innerHTML = await render();
 }
